@@ -1,0 +1,23 @@
+name: ADF Quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Repository validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate repository
+        shell: bash
+        run: |
+          chmod +x scripts/validate.sh
+          scripts/validate.sh
