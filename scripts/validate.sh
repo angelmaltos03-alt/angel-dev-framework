@@ -20,7 +20,7 @@ for file in "${required[@]}"; do
     exit 1
   fi
 done
-if grep -RInE 'BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|gh[pousr]_[A-Za-z0-9]{20,}' --exclude-dir=.git --exclude='validate.sh' .; then
+if find . -type f ! -path "./.git/*" ! -path "./.github/*" -print0 | xargs -0 grep -nE 'BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|gh[pousr]_[A-Za-z0-9]{20,}' --exclude-dir=.git --exclude='validate.sh' .; then
   echo "FAIL  possible committed credential detected"
   exit 1
 else
