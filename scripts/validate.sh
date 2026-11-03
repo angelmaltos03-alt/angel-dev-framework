@@ -26,6 +26,16 @@ if grep -RInE 'BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|gh[pousr]_[A-Za-z0-9]{20,}' --
 else
   echo "PASS  basic secret-pattern scan"
 fi
-git diff --check
-echo "PASS  git diff --check"
+# Verify whitespace in the committed source files without relying on a local index.
+if grep -RIn 
+echo "ADF repository validation passed."
+ \+$\|\t\+
+echo "ADF repository validation passed."
+ --include='*.md' --include='*.sh' --include='*.yml' --exclude-dir=.git .; then
+  echo "FAIL  trailing whitespace detected"
+  exit 1
+else
+  echo "PASS  trailing whitespace scan"
+fi
+echo "PASS  repository content validation"
 echo "ADF repository validation passed."
