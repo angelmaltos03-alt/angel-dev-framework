@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Make validation script executable
+        run: chmod +x scripts/validate.sh
       - name: Validate repository
         shell: bash
         run: |
